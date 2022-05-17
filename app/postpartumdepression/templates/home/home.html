@@ -1,0 +1,47 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+         <link rel="stylesheet" href="{% static "css/style.css" %}">
+</head>
+<body>
+
+<h1>Depresja poporodowa</h1>
+
+<h3>- Dotyczy ok 10-15% matek </h3>
+<h3>- Pierwsze objawy pojawiają się między 1-6 mc po narodzinach dziecka</h3>
+<h3>- Objawy utrzymują się przynajmniej 2 tyg</h3>
+<h3>- Wpływa na całą rodzinę</h3>
+
+
+<h2>Edynburska Skala Depresji Poporodowej:</h2>
+
+    {% for question in questions.all %}
+        <form action="" method="post">
+{% csrf_token %}
+    <div>
+    <p>{{ question.id }}. {{ question.query }}</p>
+    {%  for answer in question.answers.all %}
+        <div>
+        <label> <input type="radio" name={{ question.id }} value={{ answer.points }}/> {{ answer.points }}-{{ answer.answer }}</label>
+        </div>
+        {% endfor %}
+    </div>
+    <hr></hr>
+
+
+{%  endfor %}
+{% if not question %}
+<button type="submit">Sprawdź</button>
+{% endif %}
+</form>
+
+
+
+</body>
+</html>

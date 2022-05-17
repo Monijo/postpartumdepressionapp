@@ -1,0 +1,28 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static "css/style.css" %}">
+</head>
+<body>
+
+
+<h2>Uzyskałaś {{ points }} punktów </h2>
+{% if points  > 9 and points < 12   %}
+    <p>Możesz mieć depresję poporodową. Skonsultuj się z lekarzem rodzinnym lub psychiatrą/psychologiem </p>
+{%  elif points > 12 %}
+    <p> Prawdopodobnie masz depresję poporodową. Potrzebujesz pomocy. <a href="">Kliknij</a> by wyświetlić adresy placówek, które udzielą Ci pomocy</p>
+{%  else %}
+    <p>Wynik nie wskazuje jednoznacznie na depresję. Zadbaj o siebie i monitoruj swoją kondycję psychiczną :)</p>
+{% endif %}
+
+{% if answer10 > 0  %}
+<h4>Myśli rezygnacyjne i samobójcze są zawsze wskazaniem do konsultacji Psychiatrycznej! </h4>
+{% endif %}
+</body>
+</html>
